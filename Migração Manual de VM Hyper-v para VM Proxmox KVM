@@ -1,6 +1,7 @@
 <<<Passo a passo para conversão dos vHDs Hyper-v para Proxmox KVM (Discos raw e qcow2)>>>
 
-Obs: Efetuar modificações dos vHDs sempre salvando o convertido no MESMO STORAGE. ***Fazer um por vez***. NÃO RECORTAR. SEMPRE UTILIZAR FERRAMENTAS DE CÓPIA COMO cp, rsync, pv e etc.
+Obs: Efetuar modificações dos vHDs sempre salvando o convertido no MESMO STORAGE. ***Fazer um por vez***. 
+NÃO RECORTAR. SEMPRE UTILIZAR FERRAMENTAS DE CÓPIA COMO cp, rsync, pv e etc.
 
 Efetuar backup completo de cada VM utilizando a ferramenta nativa do Hyper-v e guardar para possível emergência
 
@@ -19,7 +20,8 @@ Para isso, crie uma VM winX (usei win8.1) para utilizar um programa que fará es
 
 Anexe cada vHD nesta VM windows que será utilizada para conversão dos vHDs.
   
-Conferir se o tamanho de cada vHD é exatamente idêntico ao arquivo do local anterior (considerar kbytes e bytes) e checar no windows por método semelhante ao md5sum do linux
+Conferir se o tamanho de cada vHD é exatamente idêntico ao arquivo do local anterior (considerar kbytes e bytes) e checar no
+windows por método semelhante ao md5sum do linux
   
 Converter modo de boot de GPT para BIOS e excluir partições adicionais.
   
@@ -41,9 +43,9 @@ No Hypervisor Linux, copie via 'rsync' os vHDs alterados para uma única unidade
   
 Conferir se o tamanho de cada vHD é exatamente idêntico ao arquivo do local anterior (considerar kbytes e bytes) e checar pelo md5sum
   
-Converter vHDs de SO para 'raw' e discos adicionais para 'qcow2', verificando a integridade de cada uma. (testar com uma VM, se ocorrer tudo bem, prosseguir com as demais).Comando: qemu-img convert -f vhdx -O raw NomeDoVHD.extensão nomeDoNovoVHDConvertido.raw
- 
- Checar integridade: qemu-img check NomeDoVHD.extensão
+Converter vHDs de SO para 'raw' e discos adicionais para 'qcow2', verificando a integridade de cada uma. (testar com uma VM, se
+ocorrer tudo bem, prosseguir com as demais).Comando: qemu-img convert -f vhdx -O raw NomeDoVHD.extensão nomeDoNovoVHDConvertido.raw
+Checar integridade: qemu-img check NomeDoVHD.extensão
 
 Relacionar na planilha/Jira (ou seu software de controle) os vHDs que apresentarem inconsistência.
 	
